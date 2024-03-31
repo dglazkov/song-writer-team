@@ -50,7 +50,8 @@
             },
             "instructions": {
               "type": "string",
-              "title": "Next Steps"
+              "title": "Next Steps",
+              "format": "markdown"
             }
           },
           "required": []
@@ -78,9 +79,7 @@
               "description": "Paste in text that will be used as raw material for the song."
             }
           },
-          "required": [
-            "text"
-          ]
+          "required": ["text"]
         }
       },
       "metadata": {
