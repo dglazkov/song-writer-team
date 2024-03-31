@@ -1,0 +1,226 @@
+{
+  "title": "Song Writer Team",
+  "description": "Given text as raw material, this AI team will turn it into a hit song, using all the tricks of the trade.",
+  "$schema": "https://raw.githubusercontent.com/breadboard-ai/breadboard/@google-labs/breadboard-schema@1.4.0/packages/schema/breadboard.schema.json",
+  "version": "0.0.1",
+  "edges": [
+    {
+      "from": "input-1",
+      "to": "structuredWorker-48e585fe",
+      "out": "text",
+      "in": "context"
+    },
+    {
+      "from": "structuredWorker-48e585fe",
+      "to": "structuredWorker-9e1f5f4c",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "structuredWorker-ba4a26b0",
+      "to": "jsonata-030fc504",
+      "out": "json",
+      "in": "json"
+    },
+    {
+      "from": "structuredWorker-9e1f5f4c",
+      "to": "structuredWorker-ba4a26b0",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "jsonata-030fc504",
+      "to": "output-2",
+      "out": "result",
+      "in": "text"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "output-2",
+      "type": "output",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "title": "Song",
+              "format": "markdown"
+            },
+            "instructions": {
+              "type": "string",
+              "title": "Next Steps"
+            }
+          },
+          "required": []
+        },
+        "instructions": "Go to https://app.suno.ai/create/, select \"Custom Mode\" and paste the song below into the \"Lyrics\" box. Then, type in the style of music you like, the Title of your composition, and hit \"Create\"."
+      },
+      "metadata": {
+        "visual": {
+          "x": 449.9999999999999,
+          "y": 198.99999999999994
+        }
+      }
+    },
+    {
+      "id": "input-1",
+      "type": "input",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "title": "Raw Material",
+              "format": "multiline",
+              "description": "Paste in text that will be used as raw material for the song."
+            }
+          },
+          "required": ["text"]
+        }
+      },
+      "metadata": {
+        "visual": {
+          "x": -331.99999999999994,
+          "y": -28
+        }
+      }
+    },
+    {
+      "id": "structuredWorker-48e585fe",
+      "type": "structuredWorker",
+      "metadata": {
+        "visual": {
+          "x": -242.99999999999997,
+          "y": 139
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "keyThemes": {
+              "type": "array",
+              "description": "Key themes in the passages",
+              "items": {
+                "type": "string",
+                "description": "A key theme that comes up in the passages"
+              }
+            },
+            "characters": {
+              "type": "array",
+              "description": "Characters that show up in the passages",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the character"
+                  },
+                  "characterDescription": {
+                    "type": "string",
+                    "description": "A character that shows up in the passage"
+                  }
+                }
+              }
+            },
+            "struggles": {
+              "type": "array",
+              "description": "Struggles or challenges that the characters encounter in the passages",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "character": {
+                    "type": "string",
+                    "description": "A character that encounters the struggle"
+                  },
+                  "struggle": {
+                    "type": "string",
+                    "description": "A struggle that the character encounters in the passage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "context": "[]",
+        "instruction": "You are a thematist, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided. Using your best creative abilities, \nidentify key themes in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. Make sure that the character names are catchy and could be used in the lyrics of the song. Keep the themes, characters, and challenges close to the passages, but be inventive, and make it fun and maybe a bit overly dramatic."
+      }
+    },
+    {
+      "id": "structuredWorker-ba4a26b0",
+      "type": "structuredWorker",
+      "metadata": {
+        "visual": {
+          "x": 60.00000000000006,
+          "y": -86.99999999999997
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "verse1": {
+              "type": "string",
+              "description": "The first verse of the song"
+            },
+            "chorus": {
+              "type": "string",
+              "description": "The chorus of the song"
+            },
+            "verse2": {
+              "type": "string",
+              "description": "The second verse of the song"
+            }
+          }
+        },
+        "context": "[]",
+        "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline from the director and inspired by the passages, themes, characters, and struggles, come up with a two-verse, one-chorus lyrics for a song. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs."
+      }
+    },
+    {
+      "id": "structuredWorker-9e1f5f4c",
+      "type": "structuredWorker",
+      "metadata": {
+        "visual": {
+          "x": 73,
+          "y": 139.99999999999994
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "character": {
+              "type": "string",
+              "description": "The name of the character to anchor the song around"
+            },
+            "story": {
+              "type": "string",
+              "description": "The storyline to use as the basis for the song, written in prose"
+            }
+          }
+        },
+        "instruction": "You are a lyrics director. You look at the themes, characters, and challenges, developed by the thematist, and pick one character to anchor the song around. Then, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?",
+        "context": "[]"
+      }
+    },
+    {
+      "id": "jsonata-030fc504",
+      "type": "jsonata",
+      "metadata": {
+        "visual": {
+          "x": 414,
+          "y": -77.99999999999997
+        }
+      },
+      "configuration": {
+        "expression": "(\n    $dub := function($s) { $replace($s, \"\\n\", \"\\n\\n\")};\n    \"[intro]\\n\\n[verse1]\\n\\n\" & $dub(verse1) &\n    \"\\n\\n[chorus]\\n\\n\" & $dub(chorus) & \n    \"\\n\\n[verse2]\\n\\n\" & $dub(verse2)  & \n    \"\\n\\n[chorus]\\n\\n\" & $dub(chorus) &\n    \"\\n\\n[outro]\\n\\n\"\n)"
+      }
+    }
+  ],
+  "kits": [],
+  "graphs": {}
+}
