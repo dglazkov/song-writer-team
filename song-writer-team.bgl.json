@@ -59,8 +59,8 @@
       },
       "metadata": {
         "visual": {
-          "x": 449.9999999999999,
-          "y": 198.99999999999994
+          "x": 449.99999999999983,
+          "y": 199
         }
       }
     },
@@ -78,7 +78,9 @@
               "description": "Paste in text that will be used as raw material for the song."
             }
           },
-          "required": ["text"]
+          "required": [
+            "text"
+          ]
         }
       },
       "metadata": {
@@ -93,8 +95,8 @@
       "type": "structuredWorker",
       "metadata": {
         "visual": {
-          "x": -242.99999999999997,
-          "y": 139
+          "x": -251,
+          "y": 138
         }
       },
       "configuration": {
@@ -107,6 +109,14 @@
               "items": {
                 "type": "string",
                 "description": "A key theme that comes up in the passages"
+              }
+            },
+            "importantFacts": {
+              "type": "array",
+              "description": "Important facts found in the passages",
+              "items": {
+                "type": "string",
+                "description": "An important fact that is mentioned in the passages"
               }
             },
             "characters": {
@@ -145,8 +155,8 @@
             }
           }
         },
-        "context": "[]",
-        "instruction": "You are a thematist, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided. Using your best creative abilities, \nidentify key themes in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. Make sure that the character names are catchy and could be used in the lyrics of the song. Keep the themes, characters, and challenges close to the passages, but be inventive, and make it fun and maybe a bit overly dramatic."
+        "context": [],
+        "instruction": "You are a thematist, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects that come to life. Make sure that the character names are catchy and could be used in the lyrics of the song. Keep the themes, characters, and challenges close to the passages, but be inventive, and make it fun and maybe a bit overly dramatic."
       }
     },
     {
@@ -154,8 +164,8 @@
       "type": "structuredWorker",
       "metadata": {
         "visual": {
-          "x": 60.00000000000006,
-          "y": -86.99999999999997
+          "x": 59,
+          "y": -87
         }
       },
       "configuration": {
@@ -176,8 +186,8 @@
             }
           }
         },
-        "context": "[]",
-        "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline from the director and inspired by the passages, themes, characters, and struggles, come up with a two-verse, one-chorus lyrics for a song. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs."
+        "context": [],
+        "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up with a two-verse, one-chorus lyrics for a song. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs. Don't forget to feature a few facts in the verses."
       }
     },
     {
@@ -197,14 +207,22 @@
               "type": "string",
               "description": "The name of the character to anchor the song around"
             },
+            "setting": {
+              "type": "string",
+              "description": "The setting where the story takes place"
+            },
             "story": {
               "type": "string",
               "description": "The storyline to use as the basis for the song, written in prose"
+            },
+            "vibe": {
+              "type": "string",
+              "description": "The vibe of the story (edgy, happy, dark, thrilling)"
             }
           }
         },
-        "instruction": "You are a lyrics director. You look at the themes, characters, and challenges, developed by the thematist, and pick one character to anchor the song around. Then, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?",
-        "context": "[]"
+        "instruction": "You are a lyrics art director. You look at the themes, facts, characters, and challenges, developed by the thematist, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n",
+        "context": []
       }
     },
     {
@@ -212,8 +230,8 @@
       "type": "jsonata",
       "metadata": {
         "visual": {
-          "x": 414,
-          "y": -77.99999999999997
+          "x": 414.00000000000006,
+          "y": -78
         }
       },
       "configuration": {
