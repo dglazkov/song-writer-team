@@ -60,8 +60,8 @@
       },
       "metadata": {
         "visual": {
-          "x": 449.9999999999999,
-          "y": 199.00000000000003
+          "x": 449.99999999999966,
+          "y": 199
         }
       }
     },
@@ -86,8 +86,8 @@
       },
       "metadata": {
         "visual": {
-          "x": -332,
-          "y": -28.000000000000014
+          "x": -332.00000000000006,
+          "y": -28
         }
       }
     },
@@ -96,8 +96,8 @@
       "type": "structuredWorker",
       "metadata": {
         "visual": {
-          "x": -251.00000000000006,
-          "y": 138.00000000000003
+          "x": -251.00000000000014,
+          "y": 137.99999999999994
         }
       },
       "configuration": {
@@ -157,7 +157,7 @@
           }
         },
         "context": [],
-        "instruction": "You are a thematist, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects that come to life. Make sure that the character names are catchy and could be used in the lyrics of the song. Keep the themes, characters, and challenges close to the passages, but be inventive, and make it fun and maybe a bit overly dramatic."
+        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages."
       }
     },
     {
@@ -205,7 +205,7 @@
       "metadata": {
         "visual": {
           "x": 73,
-          "y": 139.99999999999997
+          "y": 140
         }
       },
       "configuration": {
@@ -239,8 +239,8 @@
       "type": "jsonata",
       "metadata": {
         "visual": {
-          "x": 414,
-          "y": -78.00000000000001
+          "x": 413.9999999999999,
+          "y": -78
         }
       },
       "configuration": {
