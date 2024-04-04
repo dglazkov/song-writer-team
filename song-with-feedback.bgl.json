@@ -5,22 +5,10 @@
   "version": "0.0.1",
   "edges": [
     {
-      "from": "structuredWorker-48e585fe",
-      "to": "structuredWorker-9e1f5f4c",
-      "out": "context",
-      "in": "context"
-    },
-    {
       "from": "structuredWorker-ba4a26b0",
       "to": "jsonata-030fc504",
       "out": "json",
       "in": "json"
-    },
-    {
-      "from": "structuredWorker-9e1f5f4c",
-      "to": "structuredWorker-ba4a26b0",
-      "out": "context",
-      "in": "context"
     },
     {
       "from": "jsonata-030fc504",
@@ -33,6 +21,30 @@
       "to": "invoke-7bacf469",
       "out": "picture",
       "in": "picture"
+    },
+    {
+      "from": "structuredWorker-48e585fe",
+      "to": "structuredWorker-9e1f5f4c",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "structuredWorker-9e1f5f4c",
+      "to": "human-05f6a199",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "human-05f6a199",
+      "to": "structuredWorker-ba4a26b0",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "human-05f6a199",
+      "to": "structuredWorker-9e1f5f4c",
+      "out": "again",
+      "in": "context"
     },
     {
       "from": "invoke-7bacf469",
@@ -67,8 +79,8 @@
       "metadata": {
         "title": "Results",
         "visual": {
-          "x": 110.00000000000023,
-          "y": 183.0000000000001
+          "x": -238,
+          "y": 188.9999999999999
         }
       }
     },
@@ -88,16 +100,14 @@
               "examples": []
             }
           },
-          "required": [
-            "picture"
-          ]
+          "required": ["picture"]
         }
       },
       "metadata": {
         "title": "Raw Material",
         "visual": {
-          "x": -215,
-          "y": -409
+          "x": -769,
+          "y": -462.00000000000006
         }
       }
     },
@@ -108,8 +118,8 @@
         "title": "Theme developer",
         "logLevel": "info",
         "visual": {
-          "x": -151,
-          "y": -200
+          "x": -506,
+          "y": -543
         }
       },
       "configuration": {
@@ -168,8 +178,7 @@
             }
           }
         },
-        "context": [],
-        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages."
+        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided below.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages. If the passages are too boring to discern themes, be creative and improvise. The team relies on your output to produce a hit song."
       }
     },
     {
@@ -179,8 +188,8 @@
         "title": "Lyricist",
         "logLevel": "info",
         "visual": {
-          "x": -323,
-          "y": 67
+          "x": -757,
+          "y": 90
         }
       },
       "configuration": {
@@ -209,7 +218,6 @@
             }
           }
         },
-        "context": [],
         "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up three wildly different alternatives of the two-verse, one-chorus song lyrics. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs. Don't forget to feature a few facts in the verses."
       }
     },
@@ -220,8 +228,8 @@
         "title": "Copy Writer",
         "logLevel": "info",
         "visual": {
-          "x": 112,
-          "y": -158
+          "x": -484,
+          "y": -333
         }
       },
       "configuration": {
@@ -243,11 +251,14 @@
             "vibe": {
               "type": "string",
               "description": "The vibe of the story (edgy, happy, dark, thrilling)"
+            },
+            "voteRequest": {
+              "type": "string",
+              "description": "Request for feedback on the story from the user, phrased as a yes or no question"
             }
           }
         },
-        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n",
-        "context": []
+        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n"
       }
     },
     {
@@ -257,8 +268,8 @@
         "title": "Formatter",
         "logLevel": "info",
         "visual": {
-          "x": -101,
-          "y": 131
+          "x": -477,
+          "y": 140.9999999999999
         }
       },
       "configuration": {
@@ -276,8 +287,20 @@
         "title": "Picture Describer",
         "logLevel": "info",
         "visual": {
-          "x": 48,
-          "y": -434
+          "x": -754,
+          "y": -184
+        }
+      }
+    },
+    {
+      "id": "human-05f6a199",
+      "type": "human",
+      "metadata": {
+        "title": "Ask for feedback",
+        "logLevel": "info",
+        "visual": {
+          "x": -217,
+          "y": -134
         }
       }
     }
