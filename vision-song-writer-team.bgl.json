@@ -1,0 +1,285 @@
+{
+  "title": "Song Writer Team",
+  "description": "Given text as raw material, this AI team will turn it into a hit song, using all the tricks of the trade.",
+  "$schema": "https://raw.githubusercontent.com/breadboard-ai/breadboard/@google-labs/breadboard-schema@1.4.0/packages/schema/breadboard.schema.json",
+  "version": "0.0.1",
+  "edges": [
+    {
+      "from": "structuredWorker-48e585fe",
+      "to": "structuredWorker-9e1f5f4c",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "structuredWorker-ba4a26b0",
+      "to": "jsonata-030fc504",
+      "out": "json",
+      "in": "json"
+    },
+    {
+      "from": "structuredWorker-9e1f5f4c",
+      "to": "structuredWorker-ba4a26b0",
+      "out": "context",
+      "in": "context"
+    },
+    {
+      "from": "jsonata-030fc504",
+      "to": "output-2",
+      "out": "result",
+      "in": "text"
+    },
+    {
+      "from": "input-1",
+      "to": "invoke-7bacf469",
+      "out": "picture",
+      "in": "picture"
+    },
+    {
+      "from": "invoke-7bacf469",
+      "to": "structuredWorker-48e585fe",
+      "out": "text",
+      "in": "context"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "output-2",
+      "type": "output",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "title": "Song",
+              "format": "markdown"
+            },
+            "instructions": {
+              "type": "string",
+              "title": "Next Steps",
+              "format": "markdown"
+            }
+          },
+          "required": []
+        },
+        "instructions": "Go to [Suno](https://app.suno.ai/create/), select \"Custom Mode\" and paste the song below into the \"Lyrics\" box. Then, type in the style of music you like, the Title of your composition, and hit \"Create\"."
+      },
+      "metadata": {
+        "title": "Results",
+        "visual": {
+          "x": 110.00000000000011,
+          "y": 183
+        }
+      }
+    },
+    {
+      "id": "input-1",
+      "type": "input",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "picture": {
+              "type": "image/png",
+              "title": "Picture",
+              "format": "webcam",
+              "description": "Paste in text that will be used as raw material for the song.",
+              "default": "",
+              "examples": []
+            }
+          },
+          "required": ["picture"]
+        }
+      },
+      "metadata": {
+        "title": "Raw Material",
+        "visual": {
+          "x": -592,
+          "y": -223
+        }
+      }
+    },
+    {
+      "id": "structuredWorker-48e585fe",
+      "type": "structuredWorker",
+      "metadata": {
+        "title": "Theme developer",
+        "logLevel": "info",
+        "visual": {
+          "x": -150.99999999999994,
+          "y": -191.00000000000003
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "keyThemes": {
+              "type": "array",
+              "description": "Key themes in the passages",
+              "items": {
+                "type": "string",
+                "description": "A key theme that comes up in the passages"
+              }
+            },
+            "importantFacts": {
+              "type": "array",
+              "description": "Important facts found in the passages",
+              "items": {
+                "type": "string",
+                "description": "An important fact that is mentioned in the passages"
+              }
+            },
+            "characters": {
+              "type": "array",
+              "description": "Characters that show up in the passages",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the character"
+                  },
+                  "characterDescription": {
+                    "type": "string",
+                    "description": "A character that shows up in the passage"
+                  }
+                }
+              }
+            },
+            "struggles": {
+              "type": "array",
+              "description": "Struggles or challenges that the characters encounter in the passages",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "character": {
+                    "type": "string",
+                    "description": "A character that encounters the struggle"
+                  },
+                  "struggle": {
+                    "type": "string",
+                    "description": "A struggle that the character encounters in the passage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "context": [],
+        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages."
+      }
+    },
+    {
+      "id": "structuredWorker-ba4a26b0",
+      "type": "structuredWorker",
+      "metadata": {
+        "title": "Lyricist",
+        "logLevel": "info",
+        "visual": {
+          "x": -328,
+          "y": 103
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "alternatives": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "verse1": {
+                    "type": "string",
+                    "description": "The first verse of the song"
+                  },
+                  "chorus": {
+                    "type": "string",
+                    "description": "The chorus of the song"
+                  },
+                  "verse2": {
+                    "type": "string",
+                    "description": "The second verse of the song"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "context": [],
+        "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up three wildly different alternatives of the two-verse, one-chorus song lyrics. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs. Don't forget to feature a few facts in the verses."
+      }
+    },
+    {
+      "id": "structuredWorker-9e1f5f4c",
+      "type": "structuredWorker",
+      "metadata": {
+        "title": "Copy Writer",
+        "logLevel": "info",
+        "visual": {
+          "x": 112,
+          "y": -158
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "character": {
+              "type": "string",
+              "description": "The name of the character to anchor the song around"
+            },
+            "setting": {
+              "type": "string",
+              "description": "The setting where the story takes place"
+            },
+            "story": {
+              "type": "string",
+              "description": "The storyline to use as the basis for the song, written in prose"
+            },
+            "vibe": {
+              "type": "string",
+              "description": "The vibe of the story (edgy, happy, dark, thrilling)"
+            }
+          }
+        },
+        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n",
+        "context": []
+      }
+    },
+    {
+      "id": "jsonata-030fc504",
+      "type": "jsonata",
+      "metadata": {
+        "title": "Formatter",
+        "logLevel": "info",
+        "visual": {
+          "x": -100.99999999999994,
+          "y": 152
+        }
+      },
+      "configuration": {
+        "expression": "(\n    $dub := function($s) { $replace($s, \"\\n\", \"\\n\\n\")};\n    \"[intro]\\n\\n[verse1]\\n\\n\" & $dub(alternatives[1].verse1) &\n    \"\\n\\n[chorus]\\n\\n\" & $dub(alternatives[1].chorus) & \n    \"\\n\\n[verse2]\\n\\n\" & $dub(alternatives[1].verse2)  & \n    \"\\n\\n[chorus]\\n\\n\" & $dub(alternatives[1].chorus) &\n    \"\\n\\n[outro]\\n\\n\"\n)"
+      }
+    },
+    {
+      "id": "invoke-7bacf469",
+      "type": "invoke",
+      "configuration": {
+        "$board": "https://raw.githubusercontent.com/breadboard-ai/breadboard/f2de566f992df1c9a310430b984fa9d0a6a1af94/packages/breadboard-web/public/graphs/webcam.json",
+        "prompt": "Provide a detailed, thorough description of the picture. Make sure to include every detail. Pay attention to the object in the foreground, describing every detail. Then, describe the particulars of the background. What do you see there? Produce at least three paragraphs of text."
+      },
+      "metadata": {
+        "title": "Picture Describer",
+        "logLevel": "info",
+        "visual": {
+          "x": -364,
+          "y": -227
+        }
+      }
+    }
+  ],
+  "kits": [],
+  "graphs": {}
+}
