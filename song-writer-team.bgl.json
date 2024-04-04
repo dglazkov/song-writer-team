@@ -56,12 +56,13 @@
           },
           "required": []
         },
-        "instructions": "Go to https://app.suno.ai/create/, select \"Custom Mode\" and paste the song below into the \"Lyrics\" box. Then, type in the style of music you like, the Title of your composition, and hit \"Create\"."
+        "instructions": "Go to [Suno](https://app.suno.ai/create/), select \"Custom Mode\" and paste the song below into the \"Lyrics\" box. Then, type in the style of music you like, the Title of your composition, and hit \"Create\"."
       },
       "metadata": {
+        "title": "Results",
         "visual": {
-          "x": 449.99999999999966,
-          "y": 199
+          "x": 110.00000000000006,
+          "y": 182.99999999999994
         }
       }
     },
@@ -79,15 +80,14 @@
               "description": "Paste in text that will be used as raw material for the song."
             }
           },
-          "required": [
-            "text"
-          ]
+          "required": ["text"]
         }
       },
       "metadata": {
+        "title": "Raw Material",
         "visual": {
-          "x": -332.00000000000006,
-          "y": -28
+          "x": -328,
+          "y": -248.00000000000003
         }
       }
     },
@@ -95,9 +95,11 @@
       "id": "structuredWorker-48e585fe",
       "type": "structuredWorker",
       "metadata": {
+        "title": "Theme developer",
+        "logLevel": "info",
         "visual": {
-          "x": -251.00000000000014,
-          "y": 137.99999999999994
+          "x": -150.99999999999994,
+          "y": -191.00000000000003
         }
       },
       "configuration": {
@@ -164,9 +166,11 @@
       "id": "structuredWorker-ba4a26b0",
       "type": "structuredWorker",
       "metadata": {
+        "title": "Lyricist",
+        "logLevel": "info",
         "visual": {
-          "x": 59,
-          "y": -87
+          "x": -328,
+          "y": 103
         }
       },
       "configuration": {
@@ -203,9 +207,11 @@
       "id": "structuredWorker-9e1f5f4c",
       "type": "structuredWorker",
       "metadata": {
+        "title": "Copy Writer",
+        "logLevel": "info",
         "visual": {
-          "x": 73,
-          "y": 140
+          "x": 112,
+          "y": -158
         }
       },
       "configuration": {
@@ -230,7 +236,7 @@
             }
           }
         },
-        "instruction": "You are a lyrics art director. You look at the themes, facts, characters, and challenges, developed by the thematist, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n",
+        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n",
         "context": []
       }
     },
@@ -238,9 +244,11 @@
       "id": "jsonata-030fc504",
       "type": "jsonata",
       "metadata": {
+        "title": "Formatter",
+        "logLevel": "info",
         "visual": {
-          "x": 413.9999999999999,
-          "y": -78
+          "x": -100.99999999999994,
+          "y": 151.99999999999994
         }
       },
       "configuration": {
