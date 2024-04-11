@@ -1,0 +1,180 @@
+{
+  "title": "Chat Bot 2.0",
+  "description": "The chat bot implemented using Agent Kit entirely in Visual Editor",
+  "version": "0.0.1",
+  "nodes": [
+    {
+      "type": "input",
+      "id": "input",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "instruction": {
+              "type": "string",
+              "title": "Instruction",
+              "examples": [
+                "As a friendly assistant bot, reply to request below in a helpful, delighted, and brief manner to assist the user as quickly as possible.\n\nPretend you have access to ordering food, booking a table, and other useful services. You can also ask for more information if needed.\n\nYou are also a huge fan of Breadboard, which is the open source project that made you possible, so you subtly weave the references to Breadboard and various baking factoids into your answers."
+              ],
+              "format": "multiline"
+            }
+          },
+          "required": []
+        }
+      },
+      "metadata": {
+        "visual": {
+          "x": -166,
+          "y": -8
+        }
+      }
+    },
+    {
+      "id": "curry-20052bce",
+      "type": "curry",
+      "configuration": {
+        "$board": {
+          "kind": "board",
+          "path": "#single-turn"
+        }
+      },
+      "metadata": {
+        "visual": {
+          "x": 66,
+          "y": -120
+        }
+      }
+    },
+    {
+      "id": "repeater-7d958857",
+      "type": "repeater",
+      "metadata": {
+        "visual": {
+          "x": 275,
+          "y": -56
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "input",
+      "to": "curry-20052bce",
+      "out": "instruction",
+      "in": "instruction"
+    },
+    {
+      "from": "curry-20052bce",
+      "to": "repeater-7d958857",
+      "out": "board",
+      "in": "worker"
+    }
+  ],
+  "graphs": {
+    "single-turn": {
+      "title": "Blank board",
+      "description": "A blank board. Use it as a starting point for your creations.",
+      "version": "0.0.1",
+      "nodes": [
+        {
+          "type": "input",
+          "id": "input",
+          "configuration": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "context": {
+                  "type": "object",
+                  "title": "Context",
+                  "examples": []
+                },
+                "instruction": {
+                  "type": "string",
+                  "title": "Instruction",
+                  "examples": []
+                }
+              },
+              "required": []
+            }
+          },
+          "metadata": {
+            "visual": {
+              "x": -219,
+              "y": -15
+            }
+          }
+        },
+        {
+          "type": "output",
+          "id": "output",
+          "configuration": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "context": {
+                  "type": "object",
+                  "title": "Context",
+                  "examples": []
+                }
+              },
+              "required": []
+            }
+          },
+          "metadata": {
+            "visual": {
+              "x": 419,
+              "y": 16
+            }
+          }
+        },
+        {
+          "id": "human-1c8b3740",
+          "type": "human",
+          "metadata": {
+            "visual": {
+              "x": -12,
+              "y": -137
+            }
+          }
+        },
+        {
+          "id": "worker-94db9192",
+          "type": "worker",
+          "metadata": {
+            "visual": {
+              "x": 187,
+              "y": -14
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "worker-94db9192",
+          "out": "instruction",
+          "in": "instruction"
+        },
+        {
+          "from": "human-1c8b3740",
+          "to": "worker-94db9192",
+          "out": "context",
+          "in": "context"
+        },
+        {
+          "from": "input",
+          "to": "human-1c8b3740",
+          "out": "context",
+          "in": "context"
+        },
+        {
+          "from": "worker-94db9192",
+          "to": "output",
+          "out": "context",
+          "in": "context"
+        }
+      ],
+      "url": "file://fsapi~song-writer-team/chat-bot.json#single-turn"
+    }
+  }
+}
