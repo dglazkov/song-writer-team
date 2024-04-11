@@ -1,0 +1,355 @@
+{
+  "title": "Tour Guide Writer",
+  "description": "This boards attempts to write a tour guide for a specified location.",
+  "version": "0.0.5",
+  "nodes": [
+    {
+      "type": "input",
+      "id": "input",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "title": "Location",
+              "examples": [
+                "Stresa, Italy"
+              ],
+              "description": "The location for which to write a tour guide"
+            }
+          },
+          "required": [
+            "location"
+          ]
+        }
+      },
+      "metadata": {
+        "visual": {
+          "x": -83.99999999999994,
+          "y": 577
+        }
+      }
+    },
+    {
+      "type": "output",
+      "id": "output",
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "guide": {
+              "type": "string",
+              "title": "Guide",
+              "examples": [],
+              "description": "The tour guide for the specified location",
+              "format": "markdown"
+            },
+            "itinerary": {
+              "type": "string",
+              "title": "Itinerary",
+              "examples": [],
+              "format": "markdown"
+            }
+          },
+          "required": []
+        }
+      },
+      "metadata": {
+        "visual": {
+          "x": 1211,
+          "y": 43
+        }
+      }
+    },
+    {
+      "id": "promptTemplate-90aaa94d",
+      "type": "promptTemplate",
+      "configuration": {
+        "template": "[Place] Seattle, WA\n  [Top ten place-based experiences with no duplicates]\n  1) See the city from the Space Needle\n  2) Watch the fish throwing at Pike Place Market\n  3) Add chewing gum to the The Gum Wall\n  4) Stroll the Chihuly Garden and Glass Museum\n  5) Take a selfie with the Fremont Troll\n  6) Walk the quad at the University of Washington\n  7) Watch the octopus feeding at the Seattle Aquarium\n  8) Learn about aviation history at the Museum of Flight\n  9) Wander the art at the Seattle Art Museum\n  10) See the baby gorilla at the Woodland Park Zoo\n\n  [Place] Madrid, Spain\n  [Top ten place-based experiences with no duplicates]\n  1) Stroll the Gran Via\n  2) See the Prado Museum\n  3) Attend a Real Madrid game\n  4) Stroll through the Mercado de San Miguel\n  5) Sip wine at the Bodega de Palacio\n  6) Go clubbing at the Chueca district\n  7) Shop at the El Rastro flea market\n  8) Take a selfie at the Puerta del Sol\n  9) Shop at the El Corte Ingles\n  10) Enjoy tapas and wine at La Latina\n\n  [Place] Chicago, IL\n  [Top ten place-based experiences with no duplicates]\n  1) Attend a Chicago Bulls game\n  2) Stroll the Magnificent Mile\n  3) Go to a museum at the Museum of Science and Industry\n  4) Stroll the Millennium Park\n  5) Visit the Willis Tower\n  6) See the Chicago River\n  7) Take a selfie at the Bean\n  8) Eat deep dish pizza at Giordano's\n  9) Shop at the Water Tower Place\n  10) See the Chicago Theatre\n\n  [Place] {{location}}\n  [Top ten place-based experiences with no duplicates]"
+      },
+      "metadata": {
+        "visual": {
+          "x": -65,
+          "y": 308.00000000000006
+        }
+      }
+    },
+    {
+      "id": "text-60a88933",
+      "type": "text",
+      "metadata": {
+        "visual": {
+          "x": -5.999999999999943,
+          "y": -67.00000000000001
+        }
+      },
+      "configuration": {
+        "stopSequences": [
+          "\n[Place]"
+        ],
+        "model": "gemini-pro"
+      }
+    },
+    {
+      "id": "runJavascript-3d61d801",
+      "type": "runJavascript",
+      "metadata": {
+        "visual": {
+          "x": 371,
+          "y": 230.99999999999997
+        }
+      },
+      "configuration": {
+        "code": "const run = ({ text }) => {\n    const json = text\n      .split(/[0-9]{1,2}\\)/)\n      .map((e) => e.trim())\n      .filter((e) => e !== \"\");\n    return { json };\n  }",
+        "name": "run",
+        "raw": "on"
+      }
+    },
+    {
+      "id": "map-5dc246c3",
+      "type": "map",
+      "metadata": {
+        "visual": {
+          "x": 939.9999999999998,
+          "y": 260.9999999999999
+        }
+      }
+    },
+    {
+      "id": "runJavascript-90557c53",
+      "type": "runJavascript",
+      "metadata": {
+        "visual": {
+          "x": 1144.9999999999995,
+          "y": 444.9999999999999
+        }
+      },
+      "configuration": {
+        "code": "const run = ({ location, json, list }) => {\n      const guideList = list.map((item) => item.guide);\n      return {\n        guide: `# ${location}\\n${json\n          .map((activity, index) => `## ${activity}\\n${guideList[index]}\\n\\n`)\n          .join(\"\")}`,\n      };\n    }",
+        "name": "run",
+        "raw": "on"
+      }
+    },
+    {
+      "id": "jsonata-8177d8d4",
+      "type": "jsonata",
+      "metadata": {
+        "visual": {
+          "x": 689.9999999999998,
+          "y": 180.99999999999997
+        }
+      },
+      "configuration": {
+        "expression": "{ \"list\": $ }",
+        "raw": "on"
+      }
+    },
+    {
+      "id": "curry-5b742e3e",
+      "type": "curry",
+      "metadata": {
+        "visual": {
+          "x": 466.9999999999999,
+          "y": 433.9999999999999
+        }
+      },
+      "configuration": {
+        "$board": {
+          "kind": "board",
+          "path": "#create-guide"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "input",
+      "to": "promptTemplate-90aaa94d",
+      "out": "location",
+      "in": "location"
+    },
+    {
+      "from": "promptTemplate-90aaa94d",
+      "to": "text-60a88933",
+      "out": "text",
+      "in": "text"
+    },
+    {
+      "from": "text-60a88933",
+      "to": "runJavascript-3d61d801",
+      "out": "text",
+      "in": "text"
+    },
+    {
+      "from": "text-60a88933",
+      "to": "output",
+      "out": "text",
+      "in": "itinerary"
+    },
+    {
+      "from": "runJavascript-3d61d801",
+      "to": "jsonata-8177d8d4",
+      "out": "json",
+      "in": "json"
+    },
+    {
+      "from": "jsonata-8177d8d4",
+      "to": "map-5dc246c3",
+      "out": "list",
+      "in": "list"
+    },
+    {
+      "from": "map-5dc246c3",
+      "to": "runJavascript-90557c53",
+      "out": "list",
+      "in": "list"
+    },
+    {
+      "from": "runJavascript-3d61d801",
+      "to": "runJavascript-90557c53",
+      "out": "json",
+      "in": "json"
+    },
+    {
+      "from": "runJavascript-90557c53",
+      "to": "output",
+      "out": "guide",
+      "in": "guide"
+    },
+    {
+      "from": "input",
+      "to": "curry-5b742e3e",
+      "out": "location",
+      "in": "location"
+    },
+    {
+      "from": "curry-5b742e3e",
+      "to": "map-5dc246c3",
+      "out": "board",
+      "in": "board"
+    },
+    {
+      "from": "input",
+      "to": "runJavascript-90557c53",
+      "out": "location",
+      "in": "location"
+    }
+  ],
+  "graphs": {
+    "create-guide": {
+      "title": "Blank board",
+      "description": "A blank board. Use it as a starting point for your creations.",
+      "version": "0.0.1",
+      "nodes": [
+        {
+          "type": "input",
+          "id": "input",
+          "configuration": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "location": {
+                  "type": "string",
+                  "title": "text",
+                  "examples": []
+                },
+                "item": {
+                  "type": "string",
+                  "title": "Property 2",
+                  "examples": []
+                }
+              },
+              "required": []
+            }
+          },
+          "metadata": {
+            "visual": {
+              "x": -271,
+              "y": 56
+            }
+          }
+        },
+        {
+          "type": "output",
+          "id": "output",
+          "configuration": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "guide": {
+                  "type": "string",
+                  "title": "Guide",
+                  "examples": []
+                }
+              },
+              "required": []
+            }
+          },
+          "metadata": {
+            "visual": {
+              "x": 448.9999999999999,
+              "y": -21
+            }
+          }
+        },
+        {
+          "id": "promptTemplate-fa08c4ca",
+          "type": "promptTemplate",
+          "metadata": {
+            "visual": {
+              "x": -80,
+              "y": -69
+            }
+          },
+          "configuration": {
+            "template": "[City] Paris, France\n    [Activity] Have a picnic in the Luxembourg Gardens\n    [Experiential story] Grab a baguette, some cheese and bottle of wine and head over to Luxembourg Gardens. You'll enjoy an even stroll, a great chance to people watch, and a charming free evening that is quintessentially Parisian.\n\n    [City] Madrid, Spain\n    [Activity] See the Prado Museum\n    [Experiential story] The Prado is an art lover's paradise. It is home to the largest collection of works by Goya, Velazquez, and El Greco. There are also works by Picasso, Monet, and Rembrandt. The Prado is a must-see for anyone visiting Madrid.\n\n    [City] Tatooine\n    [Activity] Catch a pod race\n    [Experiential story] A pod race is a race of flying engines called pods. Pod racing is a dangerous sport and was very popular in the Outer Rim Territories before the Empire was formed.\n\n\n    [City] {{location}}\n    [Activity] {{activity}}\n    [Experiential story]\n    "
+          }
+        },
+        {
+          "id": "text-50ae2011",
+          "type": "text",
+          "metadata": {
+            "visual": {
+              "x": 203.9999999999999,
+              "y": -102
+            }
+          },
+          "configuration": {
+            "model": "gemini-pro",
+            "stopSequences": [
+              "[City]"
+            ]
+          }
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "promptTemplate-fa08c4ca",
+          "out": "location",
+          "in": "location"
+        },
+        {
+          "from": "input",
+          "to": "promptTemplate-fa08c4ca",
+          "out": "item",
+          "in": "activity"
+        },
+        {
+          "from": "promptTemplate-fa08c4ca",
+          "to": "text-50ae2011",
+          "out": "text",
+          "in": "text"
+        },
+        {
+          "from": "text-50ae2011",
+          "to": "output",
+          "out": "text",
+          "in": "guide"
+        }
+      ],
+      "url": "file://fsapi~song-writer-team/tour-guide-writer.bgl.json#create-guide"
+    }
+  }
+}
