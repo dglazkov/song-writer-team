@@ -6,8 +6,14 @@
   "edges": [
     {
       "from": "input-1",
-      "to": "worker-b685a68d",
+      "to": "structuredWorker-48e585fe",
       "out": "text",
+      "in": "context"
+    },
+    {
+      "from": "structuredWorker-48e585fe",
+      "to": "structuredWorker-9e1f5f4c",
+      "out": "context",
       "in": "context"
     },
     {
@@ -15,6 +21,12 @@
       "to": "jsonata-030fc504",
       "out": "json",
       "in": "json"
+    },
+    {
+      "from": "structuredWorker-9e1f5f4c",
+      "to": "worker-19dc2495",
+      "out": "context",
+      "in": "context"
     },
     {
       "from": "jsonata-030fc504",
@@ -25,18 +37,6 @@
     {
       "from": "worker-19dc2495",
       "to": "structuredWorker-ba4a26b0",
-      "out": "context",
-      "in": "context"
-    },
-    {
-      "from": "worker-b685a68d",
-      "to": "worker-4faa782d",
-      "out": "context",
-      "in": "context"
-    },
-    {
-      "from": "worker-4faa782d",
-      "to": "worker-19dc2495",
       "out": "context",
       "in": "context"
     }
@@ -107,6 +107,77 @@
       }
     },
     {
+      "id": "structuredWorker-48e585fe",
+      "type": "structuredWorker",
+      "metadata": {
+        "title": "Theme developer",
+        "logLevel": "info",
+        "visual": {
+          "x": -241,
+          "y": -117
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "keyThemes": {
+              "type": "array",
+              "description": "Key themes in the passages",
+              "items": {
+                "type": "string",
+                "description": "A key theme that comes up in the passages"
+              }
+            },
+            "importantFacts": {
+              "type": "array",
+              "description": "Important facts found in the passages",
+              "items": {
+                "type": "string",
+                "description": "An important fact that is mentioned in the passages"
+              }
+            },
+            "characters": {
+              "type": "array",
+              "description": "Characters that show up in the passages",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the character"
+                  },
+                  "characterDescription": {
+                    "type": "string",
+                    "description": "A character that shows up in the passage"
+                  }
+                }
+              }
+            },
+            "struggles": {
+              "type": "array",
+              "description": "Struggles or challenges that the characters encounter in the passages",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "character": {
+                    "type": "string",
+                    "description": "A character that encounters the struggle"
+                  },
+                  "struggle": {
+                    "type": "string",
+                    "description": "A struggle that the character encounters in the passage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "context": [],
+        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages."
+      }
+    },
+    {
       "id": "structuredWorker-ba4a26b0",
       "type": "structuredWorker",
       "metadata": {
@@ -152,6 +223,43 @@
       }
     },
     {
+      "id": "structuredWorker-9e1f5f4c",
+      "type": "structuredWorker",
+      "metadata": {
+        "title": "Copy Writer",
+        "logLevel": "info",
+        "visual": {
+          "x": 31,
+          "y": -133
+        }
+      },
+      "configuration": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "character": {
+              "type": "string",
+              "description": "The name of the character to anchor the song around"
+            },
+            "setting": {
+              "type": "string",
+              "description": "The setting where the story takes place"
+            },
+            "story": {
+              "type": "string",
+              "description": "The storyline to use as the basis for the song, written in prose"
+            },
+            "vibe": {
+              "type": "string",
+              "description": "The vibe of the story (edgy, happy, dark, thrilling)"
+            }
+          }
+        },
+        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?\n",
+        "context": []
+      }
+    },
+    {
       "id": "jsonata-030fc504",
       "type": "jsonata",
       "metadata": {
@@ -173,42 +281,12 @@
         "title": "Hook Artist",
         "logLevel": "debug",
         "visual": {
-          "x": 241,
-          "y": -136
+          "x": 282,
+          "y": -169
         }
       },
       "configuration": {
         "instruction": "You are a distinguished lyricist who specializes in developing hooks. Your hooks are famously catchy. You've learned that the hook is the thing that gets stuck in people’s heads.\n\nTake, for example, the Beatles' \"She Loves You.\" The combo of \"she loves you\" and \"yeah, yeah, yeah\" is super catchy. As another example, think of how the chorus of \"Bad Romance\" by Lady Gaga uses hooks within hooks, such as the \"ra-ra-ah-ah-ah\" vocalization, the \"caught in a bad romance\" phrase, or the \"oh-oh-oh-oh-oh\" outro.\n\nUse hooks within hooks. Hooks within hooks are smaller catchy elements that are embedded within the larger hook or chorus. They can be words, sounds, or effects that stand out and make the listener pay attention. They can also be used to create anticipation, resolution, or variation.\n\nThe lyric of the hook is concise and sparks curiosity in the listener.\n\nThe hook is spotlighted through contrast.\n\nA hook is the capstone of a well-crafted song. It’s part melody, part lyric, and most likely it’s both. It’s usually the title of the song, repeating throughout the chorus and sitting in the most prominent positions of the first or last line. Hooks often gain influence with repetition, becoming more familiar to the ear and carrying greater depth of meaning as the lyric develops. They help distinguish our song from other songs, give it a distinct fingerprint that listeners can recognize within the first few bars. \n\n\nNow, write four or five possible hooks based on the work of the copy writer."
-      }
-    },
-    {
-      "id": "worker-b685a68d",
-      "type": "worker",
-      "configuration": {
-        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages."
-      },
-      "metadata": {
-        "visual": {
-          "x": -249,
-          "y": -141
-        },
-        "title": "Theme Developer",
-        "logLevel": "debug"
-      }
-    },
-    {
-      "id": "worker-4faa782d",
-      "type": "worker",
-      "configuration": {
-        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?"
-      },
-      "metadata": {
-        "title": "Copy Writer",
-        "logLevel": "debug",
-        "visual": {
-          "x": -4,
-          "y": -146
-        }
       }
     }
   ],
