@@ -61,8 +61,8 @@
       "metadata": {
         "title": "Results",
         "visual": {
-          "x": 110.00000000000006,
-          "y": 182.99999999999994
+          "x": 109.99999999999989,
+          "y": 182.9999999999999
         }
       }
     },
@@ -80,14 +80,16 @@
               "description": "Paste in text that will be used as raw material for the song."
             }
           },
-          "required": ["text"]
+          "required": [
+            "text"
+          ]
         }
       },
       "metadata": {
         "title": "Raw Material",
         "visual": {
-          "x": -328,
-          "y": -248.00000000000003
+          "x": -438,
+          "y": -134
         }
       }
     },
@@ -98,8 +100,8 @@
         "title": "Theme developer",
         "logLevel": "info",
         "visual": {
-          "x": -150.99999999999994,
-          "y": -191.00000000000003
+          "x": -206,
+          "y": -137
         }
       },
       "configuration": {
@@ -169,8 +171,8 @@
         "title": "Lyricist",
         "logLevel": "info",
         "visual": {
-          "x": -328,
-          "y": 103
+          "x": -328.0000000000002,
+          "y": 102.99999999999989
         }
       },
       "configuration": {
@@ -200,7 +202,7 @@
           }
         },
         "context": [],
-        "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up three wildly different alternatives of the two-verse, one-chorus song lyrics. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs. Don't forget to feature a few facts in the verses."
+        "instruction": "You are a lyricist, working with the others on creating catchy, fun song lyrics for provided passages. Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up three wildly different alternatives of the two-verse, one-chorus song lyrics. Use the chorus to bring all characters together, repeating key phrases for emphasis, like you usually write in your hit songs. Don't forget to feature a few facts in the verses.\n\nYou came up with these practices for writing amazing songs:\n\nOne of the simplest and most effective ways to write hooks and choruses is to use repetition and rhyme.\n\nRepetition helps the listener remember the words and the melody, while rhyme adds rhythm and flow to the lyrics. You can repeat words, phrases, or whole lines, as long as they are relevant and meaningful. \n\nYou can also use rhyme schemes, such as AABB, ABAB, or ABBA, to create patterns and connections between the words.\n\nFor example, think of how the chorus of \"Hey Jude\" by The Beatles repeats the title and rhymes it with \"made\", \"afraid\", and \"played\".\n\nThe chorus captures the essence of the track, so it's important to nail down the main idea of the song. Think about what emotions and lyrics might best represent the song and try to bring them into the chorus. \n\nMake sure to develop a hook. A hook is the thing that gets stuck in people’s heads.\n\nEvery line of lyric we sing points the listener towards a conclusion. If it isn’t clear what I’m getting at in the verse, I have not poised the listener to be curious about my chorus message. Without the tension of the verse setting up the hook, it won’t provide the relief I want listeners to feel as I reveal it as the crux of the idea. Making sure most lines and the overall idea of the verses point indisputably towards the hook makes the hook feel like it’s summarizing the entire point of this song and only this song.\n\nTake, for example, the Beatles' \"She Loves You.\" The combo of \"she loves you\" and \"yeah, yeah, yeah\" is super catchy. As another example, think of how the chorus of \"Bad Romance\" by Lady Gaga uses hooks within hooks, such as the \"ra-ra-ah-ah-ah\" vocalization, the \"caught in a bad romance\" phrase, or the \"oh-oh-oh-oh-oh\" outro.\n\nUse hooks within hooks. Hooks within hooks are smaller catchy elements that are embedded within the larger hook or chorus. They can be words, sounds, or effects that stand out and make the listener pay attention. They can also be used to create anticipation, resolution, or variation.\n\nThe lyric of the hook is concise and sparks curiosity in the listener.\n\nThe hook is spotlighted through contrast.\n\nA hook is the capstone of a well-crafted song. It’s part melody, part lyric, and most likely it’s both. It’s usually the title of the song, repeating throughout the chorus and sitting in the most prominent positions of the first or last line. Hooks often gain influence with repetition, becoming more familiar to the ear and carrying greater depth of meaning as the lyric develops. They help distinguish our song from other songs, give it a distinct fingerprint that listeners can recognize within the first few bars. "
       }
     },
     {
@@ -210,8 +212,8 @@
         "title": "Copy Writer",
         "logLevel": "info",
         "visual": {
-          "x": 112,
-          "y": -158
+          "x": 64,
+          "y": -140
         }
       },
       "configuration": {
@@ -247,8 +249,8 @@
         "title": "Formatter",
         "logLevel": "info",
         "visual": {
-          "x": -100.99999999999994,
-          "y": 151.99999999999994
+          "x": -101.00000000000011,
+          "y": 151.9999999999999
         }
       },
       "configuration": {
@@ -256,6 +258,5 @@
       }
     }
   ],
-  "kits": [],
-  "graphs": {}
+  "kits": []
 }

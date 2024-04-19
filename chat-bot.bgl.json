@@ -41,7 +41,7 @@
       "metadata": {
         "visual": {
           "x": 66,
-          "y": -120
+          "y": -120.00000000000006
         }
       }
     },
@@ -72,7 +72,7 @@
   ],
   "graphs": {
     "single-turn": {
-      "title": "Blank board",
+      "title": "Single Turn of a chat",
       "description": "A blank board. Use it as a starting point for your creations.",
       "version": "0.0.1",
       "nodes": [
@@ -123,7 +123,7 @@
           "metadata": {
             "visual": {
               "x": 419,
-              "y": 16
+              "y": 15.999999999999972
             }
           }
         },
@@ -174,7 +174,7 @@
           "in": "context"
         }
       ],
-      "url": "file://fsapi~song-writer-team/chat-bot.json#single-turn"
+      "url": "file://fsapi~song-writer-team/chat-bot.bgl.json#single-turn"
     }
   }
 }
