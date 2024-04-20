@@ -74,7 +74,7 @@
       "metadata": {
         "title": "Results",
         "visual": {
-          "x": 298,
+          "x": 298.0000000000001,
           "y": 174
         }
       }
@@ -101,7 +101,7 @@
       "metadata": {
         "title": "Raw Material",
         "visual": {
-          "x": -438,
+          "x": -438.0000000000001,
           "y": -134
         }
       }
@@ -113,7 +113,7 @@
         "title": "Lyricist",
         "logLevel": "info",
         "visual": {
-          "x": -343,
+          "x": -343.00000000000006,
           "y": 139
         }
       },
@@ -163,7 +163,7 @@
         }
       },
       "configuration": {
-        "expression": "(\n    $dub := function($s) { $replace($s, \"\\n\", \"\\n\\n\")};\n    $display := function($s) {\n    \"# \" & $s.title & \"\\n\\n\" &\n    \"[intro]\\n\\n[verse1]\\n\\n\" & $dub($s.verse1) &\n    \"\\n\\n[chorus]\\n\\n\" & $dub($s.chorus) & \n    \"\\n\\n[verse2]\\n\\n\" & $dub($s.verse2)  & \n    \"\\n\\n[chorus]\\n\\n\" & $dub($.chorus) &\n    \"\\n\\n[outro]\\n\\n\"\n    };\n    $display(alternatives[0]) & \n    $display(alternatives[1]) &\n    $display(alternatives[2]);\n)"
+        "expression": "(\n    $dub := function($s) { $replace($s, \"\\n\", \"\\n\\n\")};\n    $display := function($s) {\n    \"# \" & $s.title & \"\\n\\n\" &\n    \"[intro]\\n\\n[verse1]\\n\\n\" & $dub($s.verse1) &\n    \"\\n\\n[chorus]\\n\\n\" & $dub($s.chorus) & \n    \"\\n\\n[verse2]\\n\\n\" & $dub($s.verse2)  & \n    \"\\n\\n[chorus]\\n\\n\" & $dub($s.chorus) &\n    \"\\n\\n[outro]\\n\\n\"\n    };\n    $display(alternatives[0]) & \n    $display(alternatives[1]) &\n    $display(alternatives[2]);\n)"
       }
     },
     {
@@ -171,7 +171,7 @@
       "type": "worker",
       "metadata": {
         "title": "Hook Artist",
-        "logLevel": "debug",
+        "logLevel": "info",
         "visual": {
           "x": 241,
           "y": -136
@@ -185,26 +185,26 @@
       "id": "worker-b685a68d",
       "type": "worker",
       "configuration": {
-        "instruction": "You are a theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages, then come up with characters that show up in the passages, and the challenges that these characters encounter. The characters may be people or objects from the passages that come to life. Keep the themes, characters, and challenges close to the passages."
+        "instruction": "You are an award-winning song theme developer, collaborating with a bunch of other folks on creating catchy, fun songs about the passages provided. Some passages may be so boring that they make it difficult to come up with something good from them. You try anyway. You firmly believe that behind the most boring passage hides a gem of a song.\n\nUsing your best creative abilities, identify key themes and important facts in the provided passages. Based on your vast experience, you have a list of theme elements that resonate well with listeners:\n- Wise Decision\n- Love/Passion\n- Heartbreak/Loss\n- Loss of Faith\n- Senseless Act/Action\n- Friendship\n- Kind/Thoughtful\n- Shame\n- Warmth/Compassion\n- Joy/Pleasure\n- Justice\n- Betrayal\n- Fun/Vitality\n- Fear\n- Hold In Confidence\n- Strength of Convictions\n- Injustice\n- Unwise Decision\n- Doubt\n- Pain of Loss\n- Remorse/Regret\n- Jealousy/Anger\n- Moment of Weakness\n- Crazy\n- Hurt\n- Murder\n- Faith In Something\n- Remember Past\n\nAfter you have a few themes, you usually come up with a few ideas for characters that show up in the passages. The characters may be people or objects from the passages that come to life.\n\nYou are very good at keeping the themes, characters, and challenges close to the passages, yet interpreting the passages in an inventive and creative way that amazes everyone.\n\nOnce you have a few theme ideas and potential characters, you typically build out details: the point of view of the speaker character, their identity (your go-to list includes Husband/Wife, Father/Mother, Teenager, Grandparent, Boyfriend/Girlfriend, Child/Baby, Parent, Other Relative, Friend/Neighbor, A Family, Enemy, Religious Figure, Confidant, Mentor, Mistress/Secret Lover, Lover, and many others), and the event perspective of the speaker: are they thinking to themselves or speaking to others.\n\nYou then outline a point of time for the events that transpire in the song. Are they happening now? A long time ago? Sometime in the future? Or perhaps the timeline moves between any of these? \n\nFinally, you move on to the emotional elements. What are the challenges or struggles that these characters (including the speaker) will encounter? What is the conflict that lights up the song and makes it reach deep into the listener's heart?  "
       },
       "metadata": {
         "visual": {
-          "x": -249,
-          "y": -141
+          "x": -249.00000000000006,
+          "y": -141.00000000000003
         },
         "title": "Theme Developer",
-        "logLevel": "debug"
+        "logLevel": "info"
       }
     },
     {
       "id": "worker-4faa782d",
       "type": "worker",
       "configuration": {
-        "instruction": "You are a copy writer. You look at the themes, facts, characters, and challenges, developed by the theme developer, and pick one character to anchor the song around.\n\nUse facts and themes to develop the setting in which the story will take place and propose the vibe of the story.\n\nThen, using all of the information provided, you develop a storyline that will be used as the foundation of the song. Follow the basic arc of the Hero's Journey. Where does the character begin? What happens to them? What actions they take to overcome challenges? What is the gift that they discover at the end?"
+        "instruction": "You are a brilliant copy writer. You look at all the wonderful ideas, created by the theme developer, and you create a storyline that is sure to result in a hit song.\n\nYou know very well that that most storylines follow the Freytag’s Pyramid, consisting of five phases: Exposition, Rising Action, Climax, Falling Action, and Resolution. You also know that each of these phases comes with their respective characteristics and you know exactly how to make them.\n\nHowever, you also know when to break the rules and introduce an unexpected plot twist or another story device, just to bring that extra list to the narrative.\n\nYou can't wait to do your magic."
       },
       "metadata": {
         "title": "Copy Writer",
-        "logLevel": "debug",
+        "logLevel": "info",
         "visual": {
           "x": -4,
           "y": -146
