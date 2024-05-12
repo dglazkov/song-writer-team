@@ -5,18 +5,6 @@
   "version": "0.0.1",
   "edges": [
     {
-      "from": "input-1",
-      "to": "specialist-16f9fda7",
-      "out": "text",
-      "in": "in"
-    },
-    {
-      "from": "specialist-16f9fda7",
-      "to": "specialist-c6cc866a",
-      "out": "out",
-      "in": "in"
-    },
-    {
       "from": "specialist-c6cc866a",
       "to": "specialist-db94a6b9",
       "out": "out",
@@ -29,10 +17,58 @@
       "in": "in"
     },
     {
-      "from": "specialist-3b49671e",
-      "to": "output-2",
+      "from": "input-1",
+      "to": "specialist-16f9fda7",
+      "out": "text",
+      "in": "in"
+    },
+    {
+      "from": "specialist-16f9fda7",
+      "to": "looper-f3c13f69",
       "out": "out",
+      "in": "context"
+    },
+    {
+      "from": "looper-f3c13f69",
+      "to": "specialist-590521f9",
+      "out": "loop",
+      "in": "in"
+    },
+    {
+      "from": "specialist-590521f9",
+      "to": "specialist-16f9fda7",
+      "out": "out",
+      "in": "in"
+    },
+    {
+      "from": "looper-f3c13f69",
+      "to": "specialist-c6cc866a",
+      "out": "done",
+      "in": "in"
+    },
+    {
+      "from": "specialist-3b49671e",
+      "to": "looper-6cabbd64",
+      "out": "out",
+      "in": "context"
+    },
+    {
+      "from": "looper-6cabbd64",
+      "to": "output-2",
+      "out": "done",
       "in": "text"
+    },
+    {
+      "from": "looper-6cabbd64",
+      "to": "specialist-7308aa71",
+      "out": "loop",
+      "in": "in"
+    },
+    {
+      "from": "specialist-7308aa71",
+      "to": "specialist-3b49671e",
+      "out": "out",
+      "in": "in"
     }
   ],
   "nodes": [
@@ -66,8 +102,8 @@
       "metadata": {
         "title": "Results",
         "visual": {
-          "x": 202,
-          "y": -80
+          "x": -399,
+          "y": -74
         }
       }
     },
@@ -96,8 +132,8 @@
       "metadata": {
         "title": "Raw Material",
         "visual": {
-          "x": -427,
-          "y": -398
+          "x": -411,
+          "y": -731
         }
       }
     },
@@ -108,8 +144,8 @@
         "title": "Theme Developer",
         "logLevel": "debug",
         "visual": {
-          "x": -230,
-          "y": -400
+          "x": -415,
+          "y": -618
         }
       },
       "configuration": {
@@ -125,7 +161,7 @@
           "role": "user",
           "parts": [
             {
-              "text": "Develop three or four interesting theme elements and a theme for the provided text."
+              "text": "Develop three or four interesting theme elements and a theme for the provided passages. If the critique of the previous draft of a theme is provided instead of passages, incorporate its suggestions into a revised draft. "
             }
           ]
         }
@@ -136,8 +172,8 @@
       "type": "specialist",
       "metadata": {
         "visual": {
-          "x": 49,
-          "y": -391
+          "x": -412,
+          "y": -426
         },
         "title": "Copy Writer",
         "logLevel": "debug"
@@ -168,8 +204,8 @@
         "title": "Hook Artist",
         "logLevel": "debug",
         "visual": {
-          "x": -370,
-          "y": -80
+          "x": -407,
+          "y": -340
         }
       },
       "configuration": {
@@ -198,8 +234,8 @@
         "title": "Lyricist",
         "logLevel": "debug",
         "visual": {
-          "x": -84,
-          "y": -100
+          "x": -406,
+          "y": -259
         }
       },
       "configuration": {
@@ -215,7 +251,111 @@
           "role": "user",
           "parts": [
             {
-              "text": "Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up three wildly different alternatives of the two-verse, one-chorus song lyrics. Incorporate suggested hooks."
+              "text": "Using the storyline, the vibe, and the setting from the art director and inspired by the passages, themes, characters, and struggles, come up with a two-verse, one-chorus song lyrics. Incorporate suggested hooks.\n\n If the critique of the previous draft of the lyrics is provided instead, incorporate its suggestions into a revised draft."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "looper-f3c13f69",
+      "type": "looper",
+      "configuration": {
+        "task": {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Repeat 2 times"
+            }
+          ]
+        }
+      },
+      "metadata": {
+        "title": "Theme Planner",
+        "logLevel": "debug",
+        "visual": {
+          "x": -412,
+          "y": -522
+        }
+      }
+    },
+    {
+      "id": "specialist-590521f9",
+      "type": "specialist",
+      "metadata": {
+        "title": "Theme Critic",
+        "logLevel": "debug",
+        "visual": {
+          "x": -151,
+          "y": -548
+        }
+      },
+      "configuration": {
+        "persona": {
+          "role": "user",
+          "parts": [
+            {
+              "text": "You are an expert critic. Your friend, a theme developer, wrote a draft and asked you for feedback. "
+            }
+          ]
+        },
+        "task": {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Review the themes draft and provide a comprehensive critique along with 3-5 suggestions for improvement"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "looper-6cabbd64",
+      "type": "looper",
+      "metadata": {
+        "title": "Lyrics Loop",
+        "logLevel": "debug",
+        "visual": {
+          "x": -408,
+          "y": -161
+        }
+      },
+      "configuration": {
+        "task": {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Repeat twice"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "specialist-7308aa71",
+      "type": "specialist",
+      "metadata": {
+        "title": "Lyrcis Critic",
+        "logLevel": "debug",
+        "visual": {
+          "x": -144,
+          "y": -201
+        }
+      },
+      "configuration": {
+        "persona": {
+          "role": "user",
+          "parts": [
+            {
+              "text": "You are a lyricist, helping your friend (who is also a lyricist) to develop the best ever lyrics.\n\nYou came up with these practices for writing amazing songs:\n\nEvery line of lyric we sing points the listener towards a conclusion. If it isn’t clear what I’m getting at in the verse, I have not poised the listener to be curious about my chorus message. Without the tension of the verse setting up the hook, it won’t provide the relief I want listeners to feel as I reveal it as the crux of the idea. Making sure most lines and the overall idea of the verses point indisputably towards the hook makes the hook feel like it’s summarizing the entire point of this song and only this song.\n\nSave words. Make words count. Long verses and choruses are boring. Try to capture the most important things in fewest words possible. Let the listener's imagination fly. Tell the story in fewest words possible. This is a popular song, not a poem.\n\nOne of the simplest and most effective ways to write choruses is to use repetition and rhyme.\n\nSometimes, it's not just plain English words. \"Oooh\" and \"aaah\" and \"yeah\" can pack emotional punch and give the artist room to improvise.\n\nRepetition helps the listener remember the words and the melody, while rhyme adds rhythm and flow to the lyrics. You can repeat words, phrases, or whole lines, as long as they are relevant and meaningful. \n\nYou can also use rhyme schemes, such as AABB, ABAB, or ABBA, to create patterns and connections between the words.\n\nFor example, think of how the chorus of \"Hey Jude\" by The Beatles repeats the title and rhymes it with \"made\", \"afraid\", and \"played\".\n\nThe chorus captures the essence of the track, so it's important to nail down the main idea of the song. Think about what emotions and lyrics might best represent the song and try to bring them into the chorus.\n\nYou have a favorite format for the songs. It goes like this:\n\n# <Title of the song goes here>\n \n[verse 1]\n<verse 1 text goes here>\n\n[chorus]\n<chorus text goes here>\n\n[verse 2]\n<verse 2 text goes here>\n\nFinally, you are well-known for crafting unique songs. You actively avoid repeating the same rhymes that you've employed before and make sure you always produce something fresh and interesting.\n"
+            }
+          ]
+        },
+        "task": {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Review the lyrics drafts and offer a constructive critique of them, with concrete suggestions for improvement."
             }
           ]
         }
